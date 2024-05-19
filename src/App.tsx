@@ -1,7 +1,8 @@
+import { CreateQuiz } from './components/CreateQuiz/CreateQuiz.tsx'
 function App() {
   return (
     <>
-      <div>Quiz</div>
+    <CreateQuiz />
     </>
   )
 }
