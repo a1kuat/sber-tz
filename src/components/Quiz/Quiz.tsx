@@ -5,7 +5,7 @@ import { Question } from "../Question";
 import { View, QuizFormValues } from "../../types";
 
 const initialValues: QuizFormValues = {
-  answers: [],
+  answers: [], 
 };
 
 export const Quiz = () => {
@@ -19,10 +19,12 @@ export const Quiz = () => {
       if (activeQuestion < results.length - 1) {
         setActiveQuestion(activeQuestion + 1);
       } else {
-        onSetUserAnswers(answers);
+        const answersArray = Object.values(answers).map(answer => String(answer));
+        console.log("Submitting answers:", answersArray); // Now this should log an array
+        onSetUserAnswers(answersArray);
         onSetView(View.Done);
       }
-      setError(false)
+      setError(false);
     } else {
       setError(true);
     }
@@ -63,7 +65,10 @@ export const Quiz = () => {
             result={result}
             name={`answers[${index}]`}
             isHidden={activeQuestion!== index}
-            onChange={(e) => setAnswers({...answers, [index]: e.target.value })}
+            onChange={(e) => setAnswers((prevAnswers) => ({
+            ...prevAnswers,
+              [index]: e.target.value
+            }))}
           />
         ))}
         {error && (

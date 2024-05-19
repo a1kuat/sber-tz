@@ -42,6 +42,7 @@ export const CreateQuiz = () => {
         question: result.question,
         correct_answer: result.correct_answer,
         answers: shuffleArray([...result.incorrect_answers, result.correct_answer]),
+        difficulty: result.difficulty, 
       }));
 
       onSetResults(results);

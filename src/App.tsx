@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useGlobalProvider } from "./hooks";
-import { CreateQuiz, Loader, Quiz } from "./components";
+import { CreateQuiz, Loader, Quiz , Results } from "./components";
 import { View } from "./types";
 
 function App() {
@@ -10,6 +10,8 @@ function App() {
     switch (view) {
       case View.Quiz:
         return <Quiz />;
+      case View.Done:
+        return <Results />;
       default:
         return <CreateQuiz />;
     }

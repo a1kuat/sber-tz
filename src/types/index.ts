@@ -16,8 +16,8 @@ export interface ApiResult {
     question: string;
     correct_answer: string;
     answers: string[];
+    difficulty: string;
   }
-  
   export enum View {
     Create = 'create',
     Quiz = 'quiz',

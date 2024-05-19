@@ -18,7 +18,7 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const [results, setResults] = useState<QuestionAndAnswers[]>([]);
   const [view, setView] = useState<View>(View.Create);
   const [showLoader, setShowLoader] = useState(false);
-  const [userAnswers, setUserAnswers] = useState<string[]>([]);
+  const [userAnswers, setUserAnswers] = useState<string[]>([]); // Initialize as an array
 
   const onSetResults = (resultsArr: QuestionAndAnswers[]) => {
     setResults(resultsArr);
@@ -33,6 +33,7 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const onSetUserAnswers = (value: string[]) => {
+    console.log("Setting userAnswers:", value); // Debugging tip
     setUserAnswers(value);
   };
 
