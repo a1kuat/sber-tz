@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { Box, TextField, Button, MenuItem, Typography } from "@mui/material";
 import { useGlobalProvider } from "../../hooks";
-import {
-  QuestionAndAnswers,
-  ApiResponse,
-  View,
-  CreateQuizFormValues,
-} from "../../types";
+import { QuestionAndAnswers, ApiResponse, View, CreateQuizFormValues} from "../../types";
 import { ApiUrl, shuffleArray } from "../../constants";
+import axios from "axios";
 
 // Initial form values setup
 const initialValues: CreateQuizFormValues = {
@@ -27,15 +23,15 @@ export const CreateQuiz = () => {
     setFormValues({...formValues, [event.target.name]: event.target.value });
   };
 
-  // Submit form handler
+  // Submit form handler using Axios
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const url = ApiUrl(formValues);
 
     try {
       onSetShowLoader(true);
-      const res = await fetch(url);
-      const data: ApiResponse = await res.json();
+      const res = await axios.get(url); 
+      const data: ApiResponse = res.data;
 
       if (data.response_code === 1) {
         setError("Not enough results. Please try again.");
